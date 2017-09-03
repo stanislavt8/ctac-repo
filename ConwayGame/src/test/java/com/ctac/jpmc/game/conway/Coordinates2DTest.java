@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
@@ -118,6 +119,26 @@ public class Coordinates2DTest {
 		assertEquals("set size", 2, set.size());
 		assertEquals("sorted 0 element", b, set.first());
 		assertEquals("sorted 1 element", a, set.last());
+	}
+	
+	@Test
+	public void testSortedSet5x5() {
+		Set <ICoordinates> unsotred = new HashSet <> (25);
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 0; j <= 4; j++) {
+				unsotred.add (new Coordinates2D (j,i));
+			}
+		}
+		Set <ICoordinates> sotred = new TreeSet <> (unsotred);
+		assertEquals("set size", 25, sotred.size());
+		Iterator <ICoordinates> iterator = sotred.iterator();
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 0; j <= 4; j++) {
+				int [] val = iterator.next().getValues();
+				assertEquals("x", i, val[0]);
+				assertEquals("x", j, val[1]);
+			}
+		}
 	}
 	
 }

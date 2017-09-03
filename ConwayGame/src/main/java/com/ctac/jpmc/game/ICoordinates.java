@@ -1,11 +1,13 @@
 package com.ctac.jpmc.game;
 
+import java.util.Comparator;
+
 /**
  * 
  * ICoordinates interface can be used to represent 2D or 3D Coordinates
- *
+ * it is not strictly needed, but useful to have a way to compare coordinates
  */
-public interface ICoordinates extends Comparable<ICoordinates> {
+public interface ICoordinates extends Comparable<ICoordinates> , Comparator <ICoordinates>  {
 	
 	/**
 	 * 

@@ -15,6 +15,7 @@ public class Coordinates2D implements ICoordinates {
 	private int y;
 
 	/**
+	 * Constructor with coordinates
 	 * 
 	 * @param x x-coordinate
 	 * @param y y-coordinate
@@ -24,33 +25,38 @@ public class Coordinates2D implements ICoordinates {
 		this.y = y;
 	}
 	
+	/**
+	 * Default Constructor
+	 * 
+	 */
+	public Coordinates2D() {
+		this (0,0);
+	}
+	
 	@Override
 	public boolean isNeighbor(ICoordinates other) {
-		int compare = compareTo(other);
+		int compare = compareByDistance(other);
 		if ((compare > 0 && compare <= 2 ) || (compare < 0 && compare >= -2 )) {
 			return true;
 		}
 		return false;
 	}
 
-	/**
-	 * 
-	 * This specific implementation designed to compare cells in a way which
-	 * - return <code>0</code> for cell which have exactly same coordinates
-	 * - return <code>1</code> or <code>-1</code> for cells which are horizontally or vertically adjacent;
-	 * - return <code>2</code> or <code>-2</code> for cells which are diagonally adjacent;
-	 * 
-	 **/
 	@Override
 	public int compareTo(ICoordinates other) {
-		if (other == null) {
+		int result = compareByDistance( other);
+		if (result > 0) {
+			return 1;
+		}
+		else if (result < 0) {
 			return -1;
 		}
-		if (!( other instanceof Coordinates2D)) {
-			return Integer.MAX_VALUE;			
-		}
-		Coordinates2D other2D = (Coordinates2D) other;
-        return distanceSquaredTo(other2D);
+		return 0;
+	}
+	
+	@Override
+	public int compare(ICoordinates o1, ICoordinates o2) {
+		return o1.compareTo(o2);
 	}
 
 	@Override
@@ -96,6 +102,27 @@ public class Coordinates2D implements ICoordinates {
 	public int [] getValues () {
 		return new int [] {x,y};
 	}
+	
+	/**
+	 * 
+	 * This specific implementation designed to compare cells in a way which
+	 * - return <code>0</code> for cell which have exactly same coordinates
+	 * - return <code>1</code> or <code>-1</code> for cells which are horizontally or vertically adjacent;
+	 * - return <code>2</code> or <code>-2</code> for cells which are diagonally adjacent;
+	 * 
+	 **/
+	private int compareByDistance (ICoordinates other) {
+		if (other == null) {
+			return Integer.MIN_VALUE;
+		}
+		if (!( other instanceof Coordinates2D)) {
+			return Integer.MAX_VALUE ;			
+		}
+		Coordinates2D other2D = (Coordinates2D) other;
+        return distanceSquaredTo(other2D);
+	}
+
+
 
 
   

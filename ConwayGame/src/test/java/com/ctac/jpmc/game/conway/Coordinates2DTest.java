@@ -7,8 +7,10 @@ import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.SortedSet;
+import java.util.TreeMap;
 import java.util.TreeSet;
 
 import org.junit.Test;
@@ -138,6 +140,31 @@ public class Coordinates2DTest {
 				assertEquals("x", i, val[0]);
 				assertEquals("x", j, val[1]);
 			}
+		}
+	}
+	
+	@Test
+	public void testSortedMap() {
+
+		Map <ICoordinates, Integer> sortedMap = new TreeMap <> (new Coordinates2D()); 
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 0; j <= 4; j++) {
+				sortedMap.put (new Coordinates2D (j,i), j*5+i);
+			}
+		}
+		assertEquals("set size", 25, sortedMap.size());
+		Iterator <ICoordinates> iterator = sortedMap.keySet().iterator();
+		for (int i = 0; i <= 4; i++) {
+			for (int j = 0; j <= 4; j++) {
+				int [] val = iterator.next().getValues();
+				assertEquals("x", i, val[0]);
+				assertEquals("x", j, val[1]);
+			}
+		}
+		Integer index = 0;
+		for (ICoordinates key: sortedMap.keySet()) {
+			Integer value = sortedMap.get(key);
+			assertEquals("value", index ++, value);
 		}
 	}
 	

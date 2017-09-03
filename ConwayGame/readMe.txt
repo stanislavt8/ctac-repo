@@ -22,7 +22,6 @@ Building and Running instructions
 This is a pretty standard maven project, so use standard maven commands like:
 
 * mvn clean install 	- to biuld jar
-* mvn javadoc:javadoc 	- to generate JavaDoc
 
 To run a simple demo program:
 

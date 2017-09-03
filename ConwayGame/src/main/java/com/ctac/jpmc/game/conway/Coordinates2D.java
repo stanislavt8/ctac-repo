@@ -1,6 +1,6 @@
 package com.ctac.jpmc.game.conway;
 
-import com.ctac.jpmc.game.ICoordinates;
+import com.ctac.jpmc.game.ICoordinates; 
 
 /**
  * 
@@ -36,10 +36,7 @@ public class Coordinates2D implements ICoordinates {
 	@Override
 	public boolean isNeighbor(ICoordinates other) {
 		int compare = compareByDistance(other);
-		if ((compare > 0 && compare <= 2 ) || (compare < 0 && compare >= -2 )) {
-			return true;
-		}
-		return false;
+		return ((compare > 0 && compare <= 2 ) || (compare < 0 && compare >= -2 )); 
 	}
 
 	@Override
@@ -93,11 +90,21 @@ public class Coordinates2D implements ICoordinates {
 	    return -result;
     }
 
+	/**
+	 * get Number Of Dimensions
+	 * 
+	 * @return returns <code>2</code> 
+	 */
 	@Override
 	public int getNumberOfDimensions() {
 		return 2;
 	}
 	
+	/**
+	 * get coordinates 
+	 * 
+	 * @return coordinates array [x,y]
+	 */
 	@Override
 	public int [] getValues () {
 		return new int [] {x,y};

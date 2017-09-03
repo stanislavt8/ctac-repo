@@ -29,9 +29,9 @@ public interface ICoordinates extends Comparable<ICoordinates> , Comparator <ICo
 	public int getNumberOfDimensions ();
 	
 	/**
-	 * get coordinates [x,y,z,etc.]
+	 * get coordinates
 	 * 
-	 * @return coordinates array
+	 * @return coordinates array  [x,y,z,etc.]
 	 */
 	public int [] getValues ();
 

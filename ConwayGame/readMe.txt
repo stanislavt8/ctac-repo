@@ -19,15 +19,20 @@ Prerequisites
 Building and Running instructions
 =================================
 
-This is a pretty standard maven project so
+This is a pretty standard maven project, so use standard maven commands like:
 
 * mvn clean install 	- to biuld jar
 * mvn javadoc:javadoc 	- to generate JavaDoc
+
+To run a simple demo program:
+
+...target>java -jar conway-game-0.0.1-SNAPSHOT-jar-with-dependencies.jar
 
 ==================
 Additional reading  
 ==================
 
 http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
+http://gameoflife.samuellevy.com/
 
 

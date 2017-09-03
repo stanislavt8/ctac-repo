@@ -151,7 +151,7 @@ public class ConwayGameTest {
 	}
 	
 
-	@Test(timeout=25000)
+	@Test /*(timeout=25000)*/
 	public void test100x100Random2Stages() {
 		Game2D game = new Game2D (100,100);
 		IGrid grid = game.getCurrentStage();

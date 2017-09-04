@@ -1,6 +1,6 @@
 package com.ctac.jpmc.game.conway;
 
-import java.util.HashSet;
+
 import java.util.Set;
 
 import org.slf4j.Logger;
@@ -18,9 +18,6 @@ import com.ctac.jpmc.game.IGrid;
  */
 public class GridCell implements IGridCell {
 	
-	private static final int MAX_SIZE_2D = 8; 
-	private static final int MAX_SIZE_3D = 26; 
-	private final int maxSize;
 	private boolean state = false;
 	private Set<IGridCell> neighbors = null;
 	private IGrid grid;
@@ -31,12 +28,6 @@ public class GridCell implements IGridCell {
 		this.coordinates = coordinates;
 		this.state = state;
 		this.grid = grid;
-		if (coordinates.getNumberOfDimensions() == 2) {
-			maxSize = MAX_SIZE_2D; 
-		}
-		else {
-			maxSize = MAX_SIZE_3D; // TODO change when support 4D coordinates
-		}
 	}
 
 
@@ -46,15 +37,7 @@ public class GridCell implements IGridCell {
 			return neighbors;
 		}
 		logger.debug("calculating Neighbors started");
-		neighbors = new HashSet <> (maxSize);
-		for (IGridCell element : grid.getCells()) {
-			if (element.getCoordinates().isNeighbor (coordinates)) {
-				neighbors.add(element);
-				if (neighbors.size() == maxSize) {
-					break;
-				}
-			}
-		}
+		neighbors = grid.getNeighbors(this);
 		logger.debug("calculating Neighbors done");
 		return neighbors;
 	}

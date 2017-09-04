@@ -1,6 +1,7 @@
 package com.ctac.jpmc.game;
 
 import java.util.Collection;
+import java.util.Set;
 
 /**
  * 
@@ -25,6 +26,8 @@ public interface IGrid {
 	 * @return cell or <code>null</code> if there is no such cell
 	 */
 	public IGridCell getCell (int ... coordinates); 
+	
+	public Set<IGridCell> getNeighbors(IGridCell cell);
 
 
 }

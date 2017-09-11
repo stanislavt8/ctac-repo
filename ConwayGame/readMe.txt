@@ -5,7 +5,9 @@
 This is an attempt to create a Gaming framework to allow to easy implement a variety of games
 working with 2-D, 3-D, or n-D matrix.
 
-The first and only implementation for now is Conway's game of life on 2-D matrix
+The first implementation is Conway's game of life on 2-D matrix (Game2D)
+The second implementation is Conway's game of life on 3-D matrix (Game3D)
+And finally, ExtendedGame3D is Conway's game of life on 3-D matrix with ectended rules
  
 
 =============

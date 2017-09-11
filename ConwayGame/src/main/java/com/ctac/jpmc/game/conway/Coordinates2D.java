@@ -9,7 +9,7 @@ import com.ctac.jpmc.game.ICoordinates;
  * known limitation: maximum x or y is 46341
  *
  */
-public class Coordinates2D implements ICoordinates {
+public class Coordinates2D extends AbstractCoordinates implements ICoordinates {
 	
 	private int x;
 	private int y;
@@ -32,30 +32,7 @@ public class Coordinates2D implements ICoordinates {
 	public Coordinates2D() {
 		this (0,0);
 	}
-	
-	@Override
-	public boolean isNeighbor(ICoordinates other) {
-		int compare = compareByDistance(other);
-		return ((compare > 0 && compare <= 2 ) || (compare < 0 && compare >= -2 )); 
-	}
-
-	@Override
-	public int compareTo(ICoordinates other) {
-		int result = compareByDistance( other);
-		if (result > 0) {
-			return 1;
-		}
-		else if (result < 0) {
-			return -1;
-		}
-		return 0;
-	}
-	
-	@Override
-	public int compare(ICoordinates o1, ICoordinates o2) {
-		return o1.compareTo(o2);
-	}
-
+		
 	@Override
 	public String toString() {
 		return "[" + x + ", " + y + "]";
@@ -118,7 +95,7 @@ public class Coordinates2D implements ICoordinates {
 	 * - return <code>2</code> or <code>-2</code> for cells which are diagonally adjacent;
 	 * 
 	 **/
-	private int compareByDistance (ICoordinates other) {
+	protected int compareByDistance (ICoordinates other) {
 		if (other == null) {
 			return Integer.MIN_VALUE;
 		}

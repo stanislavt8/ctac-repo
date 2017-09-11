@@ -1,6 +1,7 @@
 package com.ctac.jpmc.game.conway;
 
-public class Game2D extends AbstactGame {
+
+public class Game2D extends AbstractGame {
 	
 	/**
 	 * constructor witch initiate the game
@@ -31,9 +32,5 @@ public class Game2D extends AbstactGame {
 		}
 		return gridArray;
 	}
-	
-	private boolean getRandomBoolean() {
-	    return Math.random() < 0.5;
-	 }
 
 }

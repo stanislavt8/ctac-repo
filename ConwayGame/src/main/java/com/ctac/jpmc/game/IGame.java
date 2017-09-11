@@ -28,5 +28,12 @@ public interface IGame {
 	 * @return grid representing the state
 	 */
 	public IGrid getNextStage ();
+	
+	/**
+	 * get rules associated to the game
+	 * 
+	 * @return rules to evaluate
+	 */
+	public IRules getRules ();
 
 }

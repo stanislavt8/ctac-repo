@@ -9,7 +9,9 @@ import org.slf4j.LoggerFactory;
 
 import com.ctac.jpmc.game.IGame;
 import com.ctac.jpmc.game.IGrid;
-import com.ctac.jpmc.game.IGridCell; 
+import com.ctac.jpmc.game.IGridCell;
+import com.ctac.jpmc.game.IRule;
+import com.ctac.jpmc.game.IRules;
 
 
 /**
@@ -18,15 +20,18 @@ import com.ctac.jpmc.game.IGridCell;
  * See details  about the game of life on:  http://en.wikipedia.org/wiki/Conway%27s_Game_of_Life
  *
  */
-public abstract class AbstactGame implements IGame {
+public abstract class AbstractGame implements IGame { 
+	
+	public static final String STANDARD = "STANDARD";
+	public static final String EXTENDED = "EXTENDED";
 	
 	private IGrid grid;
-	private Logger logger = LoggerFactory.getLogger(AbstactGame.class);
+	private Logger logger = LoggerFactory.getLogger(AbstractGame.class);
 	
 	/**
 	 * default constructor witch dosen't initiate the game
 	 */
-	public AbstactGame() {
+	public AbstractGame() {
 		initiate ( null );
 	}
 	
@@ -35,7 +40,7 @@ public abstract class AbstactGame implements IGame {
 	 *  
 	 *  @param grid initial stage of the game
 	 */
-	public AbstactGame(IGrid grid) {
+	public AbstractGame(IGrid grid) {  
 		initiate (grid);
 	}
 	
@@ -71,10 +76,22 @@ public abstract class AbstactGame implements IGame {
 		return grid;
 	}
 
+	@Override
+	public IRules getRules() {
+		return new StandardRules ();
+	}
 
 	private boolean getNextState(IGridCell cell) {
-		boolean alive = cell.getState();
-		int aliveNeighboursCount = getAliveNeighbours (cell);
+		IRules rules = getRules();
+		Collection <IRule> results = rules.executeRules(cell);
+		for (IRule result : results) {
+			if (result.evaluateCondition() ) {
+				return result.getResult();
+			}
+		}
+		return cell.getState();
+		/*boolean alive = cell.getState();
+		int aliveNeighboursCount = getAliveNeighbors (cell);
 		if (alive) {
 			//Fewer Than 2 Live Neighbors Dies
 			if (aliveNeighboursCount <2) {
@@ -92,18 +109,11 @@ public abstract class AbstactGame implements IGame {
 				alive = true;
 			}
 		}
-
-		return alive;
+		return alive;*/
 	}
 	
-	private int getAliveNeighbours (IGridCell cell) {
-		int count = 0;
-		for (IGridCell neighbour : cell.getNeighbors()) {
-			if (neighbour.getState()) {
-				count ++;
-			}
-		}
-		return count;
-	}
+	protected boolean getRandomBoolean() {
+	    return Math.random() < 0.5;
+	 }
 
 }

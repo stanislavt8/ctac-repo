@@ -1,11 +1,8 @@
 package com.ctac.jpmc.game.conway;
 
 
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.LinkedHashMap;
 import java.util.Map;
-import java.util.Set;
 
 import com.ctac.jpmc.game.ICoordinates;
 import com.ctac.jpmc.game.IGrid;
@@ -16,31 +13,28 @@ import com.ctac.jpmc.game.IGridCell;
  * 2D Grid
  *
  */
-public class Grid2D implements IGrid {
-	
-	private Map <ICoordinates, IGridCell>  map;
-	private int xDimension;
-	private int yDimension;
+public class Grid2D extends AbstractGrid implements IGrid {
 	
 	public Grid2D(boolean[][] gridArray) {
+		super (initializeMap ());
 		if (gridArray != null && gridArray.length > 0) {
-			xDimension = gridArray.length;
-			yDimension = gridArray[0].length;
-			map = new LinkedHashMap  <> (xDimension*yDimension)  ;
+			int xDimension = gridArray.length;
+			int yDimension = gridArray[0].length;
 			for (int i = 0; i < xDimension; i++)	{
-				for (int j = 0; j < gridArray[i].length; j++) { 
+				for (int j = 0; j < yDimension; j++) { 
 					ICoordinates coordinates = new Coordinates2D (i,j);
 					IGridCell element = new GridCell (coordinates, gridArray[i][j], this);
-					map.put(coordinates, element);
+					getMap().put(coordinates, element);
 				}
 			}
 		}
-		else {
-			map = new LinkedHashMap  <> (0);
-		}
+	}
+	
+	private static  Map <ICoordinates, IGridCell> initializeMap () {
+		return new LinkedHashMap  <> (0);
 	}
 
-	@Override
+	/*@Override
 	public Collection <IGridCell> getCells() {
 		return map.values();
 	}
@@ -73,14 +67,14 @@ public class Grid2D implements IGrid {
 					neighborCoordinates [1] >=0 && 
 					neighborCoordinates [0] < xDimension &&
 					neighborCoordinates [1] < yDimension)) {
-						addNeigbor(neighbors, neighborCoordinates);
+						addNeighbor(neighbors, neighborCoordinates);
 				}
 			}
 		}
 		return neighbors;
 	}
 
-	private void addNeigbor(Set<IGridCell> neighbors, int[] neighborCoordinates) {
+	private void addNeighbor(Set<IGridCell> neighbors, int[] neighborCoordinates) {
 		IGridCell neighbor = getCell(neighborCoordinates);
 		if (neighbor != null) {
 			neighbors.add(neighbor);
@@ -90,4 +84,5 @@ public class Grid2D implements IGrid {
 	private IGridCell getCell(ICoordinates coordinates) {
 		return map.get(coordinates);
 	}
+	*/
 }

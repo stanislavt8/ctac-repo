@@ -10,7 +10,7 @@ import com.ctac.jpmc.game.IGridCell;
 
 
 
-public class ConwayGameTest {
+public class ConwayGame2DTest {
 
 	@Test
 	public void testFewerThan2LiveNeighborsDies() {
@@ -78,7 +78,7 @@ public class ConwayGameTest {
 	
 	
 	@Test
-	public void testExactly3LiveNighborsBecomesLive() {
+	public void testExactly3LiveNeighborsBecomesLive() {
 		boolean[][] gridArray = { 
 			{false,false,true},
 			{true,false,true},
@@ -89,7 +89,7 @@ public class ConwayGameTest {
 		IGridCell cell = grid.getCell(1,1);
 		assertEquals("Current state error ", false, cell.getState());
 		grid = game.getNextStage();
-		assertEquals("Exactly 3 Live Nighbors Becomes Live error ", true, cell.getState());
+		assertEquals("Exactly 3 Live Neighbors Becomes Live error ", true, cell.getState());
 	}
 	
 	@Test

@@ -16,19 +16,19 @@ public class StandardRules implements IRules {
 	public Collection<IRule> executeRules(IGridCell cell) {
 		final boolean alive = cell.getState();
 		final int aliveNeighboursCount = getAliveNeighbors (cell);
-		Collection<IRule> rules = new ArrayList <IRule> ();
-		rules.add(fewerThan2LiveNeighborsDies(alive, aliveNeighboursCount, rules));
-		rules.add(moreThan3LiveNeighborsDies(alive, aliveNeighboursCount, rules));
-		rules.add(livesIf2Or3LiveNeighbors(alive, aliveNeighboursCount, rules));
-		rules.add(aliveIf3AliveNeighbors(alive, aliveNeighboursCount, rules));
+		Collection<IRule> rules = new ArrayList <> ();
+		rules.add(fewerThan2LiveNeighborsDies(alive, aliveNeighboursCount));
+		rules.add(moreThan3LiveNeighborsDies(alive, aliveNeighboursCount));
+		rules.add(livesIf2Or3LiveNeighbors(alive, aliveNeighboursCount));
+		rules.add(aliveIf3AliveNeighbors(alive, aliveNeighboursCount));
 		return rules;
 	}
 
-	private IRule fewerThan2LiveNeighborsDies (final boolean alive, final int aliveNeighboursCount, Collection<IRule> rules) {
+	private IRule fewerThan2LiveNeighborsDies (final boolean alive, final int aliveNeighboursCount) {
 		IRule rule = new IRule () {
 			@Override
 			public boolean evaluateCondition() {
-				return alive && aliveNeighboursCount <getMinAliveNeighborsCount();
+				return alive && aliveNeighboursCount < getMinAliveNeighborsCount();
 			}
 			@Override
 			public boolean getResult() {
@@ -38,7 +38,7 @@ public class StandardRules implements IRules {
 		return rule;
 	}
 	
-	private IRule moreThan3LiveNeighborsDies (final boolean alive, final int aliveNeighboursCount, Collection<IRule> rules) {
+	private IRule moreThan3LiveNeighborsDies (final boolean alive, final int aliveNeighboursCount) {
 		IRule rule = new IRule () {
 			@Override
 			public boolean evaluateCondition() {
@@ -52,11 +52,13 @@ public class StandardRules implements IRules {
 		return rule;
 	}
 	
-	private IRule livesIf2Or3LiveNeighbors  (final boolean alive, final int aliveNeighboursCount, Collection<IRule> rules) {
+	private IRule livesIf2Or3LiveNeighbors  (final boolean alive, final int aliveNeighboursCount) {
 		IRule rule = new IRule () {
 			@Override
 			public boolean evaluateCondition() {
-				return alive && aliveNeighboursCount >=getMinAliveNeighborsCount() && aliveNeighboursCount <=getMaxAliveNeighborsCount() ;
+				return alive && 
+						aliveNeighboursCount >= getMinAliveNeighborsCount() && 
+						aliveNeighboursCount <= getMaxAliveNeighborsCount() ;
 			}
 			@Override
 			public boolean getResult() {
@@ -66,11 +68,11 @@ public class StandardRules implements IRules {
 		return rule;
 	}
 	
-	private IRule aliveIf3AliveNeighbors  (final boolean alive, final int aliveNeighboursCount, Collection<IRule> rules) {
+	private IRule aliveIf3AliveNeighbors  (final boolean alive, final int aliveNeighboursCount) {
 		IRule rule = new IRule () {
 			@Override
 			public boolean evaluateCondition() {
-				return !alive && aliveNeighboursCount ==getMaxAliveNeighborsCount ();
+				return !alive && aliveNeighboursCount == getMaxAliveNeighborsCount ();
 			}
 			@Override
 			public boolean getResult() {

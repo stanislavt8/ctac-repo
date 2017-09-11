@@ -90,26 +90,6 @@ public abstract class AbstractGame implements IGame {
 			}
 		}
 		return cell.getState();
-		/*boolean alive = cell.getState();
-		int aliveNeighboursCount = getAliveNeighbors (cell);
-		if (alive) {
-			//Fewer Than 2 Live Neighbors Dies
-			if (aliveNeighboursCount <2) {
-				alive = false;
-			}
-			//More Than 3 Live Neighbors Dies 
-			else if (aliveNeighboursCount >3 ) {
-				alive = false;
-			}
-			//2 or 3 Live Neighbors Lives do nothing alive is true already;
-		}
-		else {
-			// new alive cell
-			if (aliveNeighboursCount == 3 ) {
-				alive = true;
-			}
-		}
-		return alive;*/
 	}
 	
 	protected boolean getRandomBoolean() {

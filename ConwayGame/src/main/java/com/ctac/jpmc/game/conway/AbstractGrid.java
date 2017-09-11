@@ -2,6 +2,7 @@ package com.ctac.jpmc.game.conway;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -15,6 +16,10 @@ public abstract class AbstractGrid implements IGrid {
 	
 	public AbstractGrid(Map <ICoordinates, IGridCell>  map) {
 		this.map = map ;
+	}
+	
+	public AbstractGrid() {
+		this.map = new LinkedHashMap  <> (0);
 	}
 
 	@Override
@@ -42,7 +47,7 @@ public abstract class AbstractGrid implements IGrid {
 	public Set<IGridCell> getNeighbors(IGridCell cell) {
 		int [] coordinates =   cell.getCoordinates().getValues();
 		int dimension = coordinates.length;
-		Set<IGridCell> neighbors = new HashSet<IGridCell> ();
+		Set<IGridCell> neighbors = new HashSet<> ();
 		getNeighbors(cell.getCoordinates(), new int[] {}, dimension, neighbors);
 		return neighbors;
 	}
@@ -58,7 +63,7 @@ public abstract class AbstractGrid implements IGrid {
 			return;
 		}
 		int[] coordinatesArray = coordinates.getValues();
-		currentDim--;
+		int nextDim = currentDim-1;
 		int currentSize = current.length;
 		for (int x = -1; x <= 1; x++) {
 			int[] next = new int[currentSize + 1];
@@ -66,7 +71,7 @@ public abstract class AbstractGrid implements IGrid {
 				next[i] = current[i];
 			}
 			next[currentSize] = coordinatesArray [currentSize] + x;
-			getNeighbors(coordinates, next, currentDim, neighbors);
+			getNeighbors(coordinates, next, nextDim, neighbors);
 		}
 	}
 	

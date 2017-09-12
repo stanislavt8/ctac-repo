@@ -20,6 +20,7 @@ public class Coordinates3D extends AbstractCoordinates implements ICoordinates {
 	 * 
 	 * @param x x-coordinate
 	 * @param y y-coordinate
+	 * @param z z-coordinate
 	 */
 	public Coordinates3D(int x, int y, int z) {
 		this.x = x;
@@ -67,10 +68,7 @@ public class Coordinates3D extends AbstractCoordinates implements ICoordinates {
         if (result <0) {
         	throw new CoordinatesException ("overflow"); 
         }
-        if ((dx >= 0 && dy >= 0) || (dx > 0 && dy < 0)  || (dz > 0 && dz < 0)) {
-        	return result;	
-        }
-	    return -result;
+        return result;
     }
 
 	/**

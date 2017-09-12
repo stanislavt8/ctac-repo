@@ -4,16 +4,16 @@ import com.ctac.jpmc.game.IRules;
 
 public class ExtendedRules extends StandardRules implements IRules {
 	
-	private static final int minAliveNeighborsCount = 3;
-	private static final int maxAliveNeighborsCount = 5;
+	private static final int MIN_ALIVE_NEIGHBORS_COUNT = 3;
+	private static final int MAX_ALIVE_NEIGHBORS_COUNT = 5;
 
 	@Override
 	public int getMinAliveNeighborsCount() {
-		return minAliveNeighborsCount;
+		return MIN_ALIVE_NEIGHBORS_COUNT;
 	}
 
 	@Override
 	public int getMaxAliveNeighborsCount() {
-		return maxAliveNeighborsCount;
+		return MAX_ALIVE_NEIGHBORS_COUNT;
 	}
 }

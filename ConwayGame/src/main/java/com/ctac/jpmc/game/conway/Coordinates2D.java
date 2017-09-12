@@ -107,7 +107,5 @@ public class Coordinates2D extends AbstractCoordinates implements ICoordinates {
 	}
 
 
-
-
   
 }

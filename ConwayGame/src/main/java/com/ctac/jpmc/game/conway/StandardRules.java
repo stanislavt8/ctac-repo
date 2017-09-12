@@ -9,8 +9,8 @@ import com.ctac.jpmc.game.IRules;
 
 public class StandardRules implements IRules { 
 	
-	private static final int minAliveNeighborsCount = 2;
-	private static final int maxAliveNeighborsCount = 3;
+	private static final int MIN_ALIVE_NEIGHBORS_COUNT = 2;
+	private static final int MAX_ALIVE_NEIGHBORS_COUNT = 3;
 	
 	@Override
 	public Collection<IRule> executeRules(IGridCell cell) {
@@ -93,11 +93,11 @@ public class StandardRules implements IRules {
 	}
 
 	public int getMinAliveNeighborsCount() {
-		return minAliveNeighborsCount;
+		return MIN_ALIVE_NEIGHBORS_COUNT;
 	}
 
 	public int getMaxAliveNeighborsCount() {
-		return maxAliveNeighborsCount;
+		return MAX_ALIVE_NEIGHBORS_COUNT;
 	}
 
 }

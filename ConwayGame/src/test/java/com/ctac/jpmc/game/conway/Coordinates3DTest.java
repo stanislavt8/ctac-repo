@@ -54,4 +54,5 @@ public class Coordinates3DTest {
 		set.add( a);
 		assertEquals("set size", 2, set.size());
 	}
+	
 }

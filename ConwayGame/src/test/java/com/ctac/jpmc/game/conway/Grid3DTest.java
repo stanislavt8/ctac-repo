@@ -83,6 +83,7 @@ public class Grid3DTest {
 				};
 		IGrid grid = new Grid3D (gridArray);
 		Collection <IGridCell>  cells = grid.getCells();
+		
 		assertEquals("grid size", 27, cells.size());
 		for (int i = 0; i < 3; i++)	{
 			for (int j = 0; j < 3; j++) {
@@ -101,6 +102,11 @@ public class Grid3DTest {
 		assertEquals("element 2,0,1 Neighbors size", 11, grid.getCell(2,0,1).getNeighbors().size()); 
 		assertEquals("element 2,1,1 Neighbors size", 17, grid.getCell(2,1,1).getNeighbors().size()); 
 		assertEquals("element 2,2,2 Neighbors size", 7, grid.getCell(2,2,2).getNeighbors().size()); 
+		
+		assertEquals("grid 0,0,0 Neighbors size", 7,grid.getNeighbors(grid.getCell(0,0,0)).size());
+		assertEquals("grid 2,0,1 Neighbors size", 11,grid.getNeighbors(grid.getCell(2,0,1)).size());
+		assertEquals("grid 2,1,1 Neighbors size", 17,grid.getNeighbors(grid.getCell(2,1,1)).size());
+		assertEquals("grid 1,1,1 Neighbors size", 26,grid.getNeighbors(grid.getCell(1,1,1)).size());
 	}
 
 }

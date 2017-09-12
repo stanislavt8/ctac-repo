@@ -51,5 +51,4 @@ public class Coordinates2DTest {
 		assertEquals("set size", 2, set.size());
 	}
 	
-	
 }
